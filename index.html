@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Japan Trip Plan — Full Itinerary</title>
+  <meta name="description" content="Full, verbatim Japan trip plan with photos and clear schedule." />
+  <style>
+    :root {
+      --bg: #f0f0f5;
+      --card: #ffffff;
+      --muted: #555555;
+      --accent: linear-gradient(90deg, #5eead4, #60a5fa);
+      --glass: rgba(0, 0, 0, 0.04);
+      --glass-2: rgba(0, 0, 0, 0.02);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: linear-gradient(180deg, #f0f0f5 0%, #e0e0e5 100%);
+      color: #333;
+      min-height: 100%;
+    }
+
+    .container {
+      max-width: 1100px;
+      padding: 20px;
+      margin: 0 auto;
+    }
+
+    /* Header */
+    .site-hero {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: radial-gradient(ellipse at top left, rgba(96, 165, 250, 0.1), transparent 25%), linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(250, 250, 250, 0.8));
+      padding: 48px 20px;
+      border-radius: 24px;
+      margin: 36px auto 20px;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    .site-hero h1 {
+      margin: 0;
+      font-size: 36px;
+      letter-spacing: -0.5px;
+      color: #111;
+    }
+
+    .site-hero .sub {
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 16px;
+    }
+
+    /* Navigation menu */
+    .toc {
+      overflow-x: auto;
+      margin-top: 18px;
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .toc a {
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: var(--glass);
+      text-decoration: none;
+      color: #111;
+      font-weight: 600;
+      font-size: 13px;
+      transition: transform 0.25s ease, box-shadow 0.25s;
+      white-space: nowrap;
+    }
+
+    .toc a:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Day cards */
+    .day-card {
+      scroll-margin-top: 140px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(255, 255, 255, 0.96));
+      padding: 22px;
+      border-radius: 14px;
+      margin: 28px 0;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+      transition: transform 0.3s ease;
+      color: #222;
+      opacity: 0;
+      transform: translateY(12px);
+      animation: slideIn 0.6s ease forwards;
+    }
+
+    .day-card:hover {
+      transform: translateY(-6px);
+    }
+
+    .day-card h2 {
+      margin: 0 0 8px 0;
+      color: #000;
+    }
+
+    .time-block {
+      padding: 12px 0;
+      border-top: 1px dashed rgba(0, 0, 0, 0.05);
+    }
+
+    .time-block h3 {
+      margin: 6px 0;
+      font-size: 15px;
+      color: #333;
+    }
+
+    .time-block p {
+      margin: 4px 0;
+      color: #444;
+      line-height: 1.45;
+    }
+
+    .time-block ul {
+      margin: 6px 0 10px 18px;
+      color: #444;
+    }
+
+    /* Images */
+    .place-photo {
+      margin-top: 14px;
+      border-radius: 20px;
+      overflow: hidden;
+      background: var(--glass-2);
+      display: block;
+      text-align: center;
+    }
+
+    .place-photo img {
+      max-width: 100%;
+      height: auto;
+      object-fit: contain;
+      border-radius: inherit;
+      display: block;
+      transition: transform 0.6s cubic-bezier(0.2, 0.9, 0.3, 1);
+      margin: 0 auto;
+    }
+
+    .place-photo.large img {
+      max-height: 600px;
+      width: auto;
+    }
+
+    .place-photo:hover img {
+      transform: scale(1.02);
+    }
+
+    .place-photo figcaption {
+      font-size: 13px;
+      color: #555;
+      padding: 8px 10px;
+      text-align: center;
+      display: block;
+      margin-top: 6px;
+    }
+
+    /* Footer */
+    .footer {
+      margin-top: 28px;
+      padding: 18px;
+      border-radius: 12px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.9), transparent);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .footer p {
+      margin: 0;
+      color: #555;
+    }
+
+    .footer-credits {
+      font-size: 13px;
+      color: #777;
+      margin-top: 8px;
+    }
+
+    /* Animations */
+    @keyframes slideIn {
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    .day-card:nth-of-type(1) {animation-delay: 0.05s;}
+    .day-card:nth-of-type(2) {animation-delay: 0.10s;}
+    .day-card:nth-of-type(3) {animation-delay: 0.15s;}
+    .day-card:nth-of-type(4) {animation-delay: 0.20s;}
+    .day-card:nth-of-type(5) {animation-delay: 0.25s;}
+
+    a:focus {
+      outline: 3px solid rgba(96, 165, 250, 0.25);
+      outline-offset: 4px;
+    }
+
+    /* Mobile */
+    @media (max-width: 700px) {
+      .container {padding: 16px;}
+      .site-hero h1 {font-size: 24px;}
+      .place-photo.large img {max-height: 300px;}
+      .footer {flex-direction: column; align-items: flex-start;}
+    }
+  </style>
+</head>
+<body>
+  <header class="site-hero">
+    <div class="hero-inner">
+      <h1>Japan Trip Plan — Full Itinerary</h1>
+      <p class="sub">Detailed Plan For DEC 30 - JAN 04</p>
+      <nav class="toc">
+        <a href="#day6">Day 6 — Dec 30, 2025</a>
+        <a href="#day7">Day 7 — Dec 31, 2025</a>
+        <a href="#day8">Day 8 — Jan 1, 2026</a>
+        <a href="#day9">Day 9 — Jan 2, 2026</a>
+        <a href="#day10">Day 10 — Jan 3, 2026</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Day 6 -->
+    <article id="day6" class="day-card">
+      <h2>Day 6: Dec 30, 2025 (Tue)</h2>
+      <section class="time-block">
+        <h3>8:30 AM - 11:00 AM</h3>
+        <p><strong>Drive to Gifu Mt. Kinka Ropeway Base Station</strong> (SGD11.30 per ticket to go up the mountain)</p>
+        <ul>
+          <li>Driving Time: Approx: 1 hour</li>
+          <li>Reminder: Winter tires are mandatory for this drive.</li>
+        </ul>
+        <figure class="place-photo">
+          <img src="https://www.gifucvb.or.jp/cmsdesigner/viewimg.php?entryname=kankou&entryid=00003&fileid=00000001&/s%BF%B7%A5%ED%A1%BC%A5%D7%A3%B2.jpg&w=910" alt="Gifu Mt. Kinka Ropeway"/>
+          <figcaption>Gifu Mt. Kinka Ropeway</figcaption>
+        </figure>
+      </section>
+      <section class="time-block">
+        <h3>11:00 AM - 1:00 PM</h3>
+        <p><strong>Explore Gifu Kinkazan Squirrel Village</strong></p>
+        <p>• Long-running complex where visitors can interact with trained squirrels & feed them acorns.
+        <br/>Backup plan if closed (Explore rest of Mt kinkazan)</p>
+        <figure class="place-photo">
+          <!-- PLACEHOLDER: add an online image URL for Gifu Mt. Kinka ropeway here -->
+          <img src="https://svcstrg.cld.navitime.jp/travelguide/p21060003/p21060003_01.jpg" alt="Squirrel Village"/>
+          <figcaption>Able to feed trained squirrels</figcaption>
+        </figure>
+      </section>
+
+      <section class="time-block">
+        <h3>1:00 PM - 2:00 PM</h3>
+        <p><strong>Lunch at Le Pont de Ciel(Japan, 〒500-0000 Gifu, Keyakidani, 18−3 金華山山頂)</strong></p>
+        <p>This is a great opportunity to eat lunch on top of a mountain</p>
+        <figure class="place-photo">
+          <img src="https://static.gltjp.com/glt/data/directory/16000/15380/20240122_083437_329773f3_w640.webp" alt="Le Pont de Ciel"/>
+          <figcaption>Le Pont de Ciel(has view of mountain)</figcaption>
+        </figure>
+      </section>
+
+      <section class="time-block">
+        <h3>2:00 PM - 4:00 PM</h3>
+        <p><strong>Visit Gifu Park after coming down from mountain</strong></p>
+        <p>• Take final photos before leaving.</p>
+      </section>
+
+      <section class="time-block">
+        <h3>4:00 PM - 4:30 PM</h3>
+        <p><strong>Prepare for Leave</strong></p>
+        <p>• Enjoy a final look at the scenery before heading back to your car to begin the journey back to Nagoya.</p>
+      </section>
+
+      <section class="time-block">
+        <h3>4:30 PM - 5:30 PM</h3>
+        <p><strong>Drive back to Nagoya</strong></p>
+        <p>• Make the scenic drive back from the mountains to the city.</p>
+      </section>
+
+      <section class="time-block">
+        <h3>5:30 PM - 8:00 PM</h3>
+        <p><strong>Have a chill dinner in Nagoya</strong></p>
+        <p>(No need rush)</p>
+      </section>
+    </article>
+
+    <!-- Day 7 -->
+    <article id="day7" class="day-card">
+      <h2>Day 7 : Dec 31, 2025 (Wed)</h2>
+
+      <section class="time-block">
+        <h3>10:00 AM - 10:30 AM</h3>
+        <p><strong>Drive to Osu Kannon Temple (2 Chome-21-47 Osu, Naka Ward, Nagoya, Aichi 460-0011, Japan)</strong></p>
+      </section>
+
+      <section class="time-block">
+        <h3>10:30 AM - 1:00 PM</h3>
+        <p><strong>Osu Kannon Temple and explore the surronding area</strong></p>
+        <figure class="place-photo">
+          <img src="https://www.kawaii-aichi.jp/wp-content/uploads/2018/04/osu_temple01-1024x682.jpg" alt="osu"/>
+          <figcaption>Osu Kannon Temple</figcaption>
+        </figure>
+      </section>
+
+      <section class="time-block">
+        <h3>1:00 PM - 3:00 PM</h3>
+        <p><strong>Fina lunch in Osu Shopping Street</strong></p>
+      </section>
+
+      <section class="time-block">
+        <h3>3:00 PM - 5:00 PM</h3>
+        <p><strong>Shopping at Osu Shotengai Shopping Street</strong></p>
+        <figure class="place-photo">
+          <img src="https://cdn.gaijinpot.com/app/uploads/sites/4/2022/02/GPBlog_NagoyaShopping_iStock-peeterv_Lead2.jpg" alt="shopping street"/>
+          <figcaption>Osu Shopping Street</figcaption>
+        </figure>
+      </section>
+
+      <section class="time-block">
+        <h3>5:00 PM - 7:00 PM</h3>
+        <p><strong>Dinner at Aeon Yagoto</strong></p>
+      </section>
+
+      <section class="time-block">
+        <h3>7:00 PM - 10:30 PM</h3>
+        <p><strong>MORE SHOPING at Aeon Yagoto</strong></p>
+        <figure class="place-photo">
+          <img src="https://www.jmf-reit.com/english/portfolio/ea9gav0000002ivr-img/S-17_AEON_Yagoto.jpg" alt="aeon yagoto"/>
+          <figcaption>Aeon Yagoto</figcaption>
+        </figure>
+      </section>
+
+      <section class="time-block">
+        <h3>10:30 PM - 11:30 PM</h3>
+        <p><strong>Go to Koshoji Temple for Joya no Kane</strong></p>
+      </section>
+
+      <section class="time-block">
+        <h3>11:30 PM - 12:00 AM</h3>
+        <p><strong>Celebrate New Year!</strong></p>
+        <figure class="place-photo">
+          <img src="https://i0.wp.com/mykyotomachiya.com/wp-content/uploads/2015/12/101231_Kyoto-Chion-In-1492.jpg?fit=1024%2C681&ssl=1" alt="joya no kane"/>
+          <figcaption>Joya No Kane(New Year Tradition)</figcaption>
+        </figure>
+      </section>
+    </article>
+
+    <!-- Day 8 -->
+    <article id="day8" class="day-card">
+      <h2>Day 8: Jan 1, 2026 (Thu)</h2>
+
+      <section class="time-block">
+        <h3>9:30 AM - 10:30 AM</h3>
+        <p><strong>Drive to Mitsui Outlet Park</strong></p>
+        <ul>
+          <li>Route: Take the Nagoya Expressway and Isewangan Expressway from central Nagoya.</li>
+          <li>Driving Time: Approx. 40-50 minutes.</li>
+          <li>Parking: A large, paid parking area is available on-site.</li>
+        </ul>
+      </section>
+
+      <section class="time-block">
+        <h3>10:30 AM - 7:30 PM</h3>
+        <p><strong>New Year Shopping & Dinner at Mitsui Outlet Park</strong></p>
+        <p>• Address: 368 Nagashimacho Urayasu, Kuwana, Mie 511-1134, Japan</p>
+        <p>• Spend the day enjoying the New Year sales and hunting for fukubukuro (lucky bags).</p>
+        <p>• Dinner: Have dinner at one of the restaurants in the outlet's food court or dining area before you leave.</p>
+      </section>
+
+      <section class="time-block">
+        <h3>7:30 PM - 8:30 PM</h3>
+        <p><strong>Drive back to Nagoya</strong></p>
+        <p>• After dinner, make the drive back to your hotel in Nagoya.</p>
+      </section>
+
+      <figure class="place-photo">
+        <!-- Placeholder for Mitsui Outlet Park image -->
+        <img src="https://www.nagoya-info.jp/upload/spots/large/18817188645e3bb41b30e90.jpg" alt="Mitsui Outlet Park Nagashima"/>
+        <figcaption>Mitsui Outlet Park Nagashima </figcaption>
+      </figure>
+    </article>
+
+    <!-- Day 9 -->
+    <article id="day9" class="day-card">
+      <h2>Day 9: Jan 2, 2026 (Fri)</h2>
+
+      <section class="time-block">
+        <h3>10:00 AM - 11:00 AM</h3>
+        <p><strong>Drive to Okazaki</strong></p>
+        <ul>
+          <li>Route: A straightforward drive on local roads or the Tomei Expressway.</li>
+          <li>Driving Time: Approx. 45-60 minutes.</li>
+        </ul>
+      </section>
+
+      <section class="time-block">
+        <h3>11:00 AM - 1:00 PM</h3>
+        <p><strong>Explore Okazaki Castle & Park</strong></p>
+        <p>• Visit the historic castle and wander through the surrounding park, the birthplace of shogun Tokugawa Ieyasu.</p>
+        <figure class="place-photo">
+          <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/04/c9/02/78/caption.jpg?w=700&h=400&s=1" alt="okazaki castle"/>
+          <figcaption>Okazaki Castle and Park</figcaption>
+        </figure>
+      </section>
+
+      <section class="time-block">
+        <h3>1:00 PM - 2:00 PM</h3>
+        <p><strong>Lunch</strong></p>
+        <p>• Enjoy lunch at Ichikawa (561-1 Koseicho, Okazaki, Aichi 444-0052, Japan) near the castle park.</p>
+        <figure class="place-photo">
+          <img src="https://lh3.googleusercontent.com/gps-cs-s/AC9h4nojquvevAoJxUQBIsZYwmz0M7-NF6i4wD040MkZvEq-3vwgc1ywX3rP2l3ynfou32zRFTyId_52ksRJNf__EidSpXClBPR02t7UQt5fs2ihycQIIy72sdQEKFgA6tggyvC-zFTpv-75YWB7=s680-w680-h510-rw" alt="ichikawa"/>
+          <figcaption>Ichikawa</figcaption>
+        </figure>
+      </section>
+
+      <section class="time-block">
+        <h3>2:00 PM - 3:30 PM</h3>
+        <p><strong>Mega Don Don Donki</strong></p>
+        <p>• Take a short drive to the Mega Don Don Donki Mall (Harayama-4-8 Tosakicho, Okazaki, Aichi 444-0840, Japan)</p>
+        <figure class="place-photo">
+          <img src="https://jice.homemate-research.com/pubuser1/pubuser_facility_img/9/8/0/00000000000000321089/0000047529/00000000000000321089_0000047529_1.jpg?f=400" alt="Don Don Donki"/>
+          <figcaption>Don Don Donki</figcaption>
+        </figure>
+      </section>
+
+      <section class="time-block">
+        <h3>3:30 PM - 4:30 PM</h3>
+        <p><strong>Drive back to Nagoya</strong></p>
+        <p>• Begin the easy drive back to the city.</p>
+      </section>
+
+      <section class="time-block">
+        <h3>From 5:30 PM</h3>
+        <p><strong>Dinner in Nagoya</strong></p>
+        <p>• After a relaxing day trip, enjoy dinner at a restaurant of your choice.
+        <br/>- After dinner go to Tokoname to check into hotel
+        <br/>Reminder to return the rental car</p>
+      </section>
+    </article>
+
+    <!-- Day 10 -->
+    <article id="day10" class="day-card">
+      <h2>Day 10: Jan 3,2026 (Sat)</h2>
+
+      <section class="time-block">
+        <h3>9:00 AM - 12:00 PM</h3>
+        <p><strong>Tokoname Pottery Footpath</strong></p>
+        <p>- Must do activity in Tokoname</p>
+        <figure class="place-photo">
+          <img src="https://aichinow.pref.aichi.jp/upload/spot_images/049b4a2585f517a57d6cafa9366dd12c.jpg" alt="Pottery"/>
+          <figcaption>Must visit !!</figcaption>
+        </figure>
+      </section>
+
+      <section class="time-block">
+        <h3>12:00 PM - 1:00 PM</h3>
+        <p><strong>Lunch at Loud 26.69 Ramen restaurant (2 Chome-103 Sakaemachi, Tokoname, Aichi 479-0836, Japan)</strong></p>
+        <figure class="place-photo">
+          <img src="https://resources.matcha-jp.com/resize/480x2000/2024/10/28-205485.webp" alt="Ramen"/>
+          <figcaption>Must Try! Tokoname Ramen</figcaption>
+        </figure>
+      </section>
+
+      <section class="time-block">
+        <h3>1:00 PM - 5:00 PM</h3>
+        <p><strong>Shopping at Aeon Mall Tokoname and the amusement park outside the mall</strong></p>
+        <figure class="place-photo">
+          <img src="https://www.daydaytravel.hk/wp-content/uploads/2024/04/nagoya-tokoname-aeonmall-maneki-neko-cat.jpg" alt="Aeon Tokoname"/>
+          <figcaption>Most famous Cat in Tokoname located in Aeon Tokoname</figcaption>
+        </figure>
+      </section>
+
+      <section class="time-block">
+        <h3>5:00 PM - 6:00 PM</h3>
+        <p><strong>Dinner at Taichi Shokudō Rice & Hamburger Restaurant ( Hamburg restaurant )</strong></p>
+        <figure class="place-photo">
+          <img src="https://tblg.k-img.com/restaurant/images/Rvw/293850/640x640_rect_ed888f7a7d82c31a0bc43924bfa16582.jpg" alt="Hamburg"/>
+          <figcaption>Hamburg Steak! (Wayne Favourite)</figcaption>
+        </figure>
+      </section>
+
+      <section class="time-block">
+        <h3>6:00 PM onward</h3>
+        <p><strong>Go back hotel rest</strong></p>
+      </section>
+    </article>
+
+    <footer class="footer">
+      <div>
+        <p>Full itinerary reproduced verbatim from the uploaded plan. All times, addresses and notes are included.</p>
+        <p>Images: placeholder images included. Replace with high-res images as needed.</p>
+      </div>
+      <div class="footer-credits">Made with care • All-in-one HTML + CSS</div>
+    </footer>
+  </main>
+</body>
+</html>
