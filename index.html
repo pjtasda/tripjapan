@@ -5,170 +5,248 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Japan Trip Plan — Full Itinerary</title>
   <meta name="description" content="Full, verbatim Japan trip plan with photos and clear schedule." />
+
   <style>
+    /* -------------------
+       Variables
+    ------------------- */
     :root {
-      --bg: #f0f0f5;
-      --card: #ffffff;
-      --muted: #555555;
-      --accent: linear-gradient(90deg, #5eead4, #60a5fa);
-      --glass: rgba(0, 0, 0, 0.04);
-      --glass-2: rgba(0, 0, 0, 0.02);
+      --bg: #f8f8f8;
+      --card-bg: #ffffff;
+      --text-primary: #1d1d1f;
+      --text-secondary: #6e6e73;
+      --accent: #0071e3;
+      --border: #d2d2d7;
+      --shadow: rgba(0,0,0,0.08);
+      --radius: 16px;
+      --gap: 20px;
     }
 
-    * { box-sizing: border-box; }
-
-    html { scroll-behavior: smooth; }
-
-    body {
+    * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-      background: linear-gradient(180deg, #f0f0f5 0%, #e0e0e5 100%);
-      color: #333;
-      min-height: 100%;
     }
 
-    .container { max-width: 1100px; padding: 20px; margin: 0 auto; }
+    html {
+      scroll-behavior: smooth;
+    }
 
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background-color: var(--bg);
+      color: var(--text-primary);
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: var(--accent);
+      transition: color 0.25s ease;
+    }
+
+    a:hover {
+      color: #005bb5;
+    }
+
+    .container {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 24px 16px;
+    }
+
+    /* -------------------
+       Hero Section
+    ------------------- */
     .site-hero {
       position: sticky;
       top: 0;
       z-index: 1000;
-      background: radial-gradient(ellipse at top left, rgba(96, 165, 250, 0.1), transparent 25%), linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(250, 250, 250, 0.8));
-      padding: 48px 20px;
-      border-radius: 24px;
-      margin: 36px auto 20px;
-      backdrop-filter: blur(8px);
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+      background: rgba(255,255,255,0.95);
+      padding: 48px 16px;
+      border-radius: var(--radius);
+      box-shadow: 0 6px 20px var(--shadow);
       text-align: center;
+      backdrop-filter: blur(8px);
+      margin-bottom: var(--gap);
     }
 
-    .site-hero h1 { margin: 0; font-size: 36px; letter-spacing: -0.5px; color: #111; }
-    .site-hero .sub { margin-top: 8px; color: var(--muted); font-size: 16px; }
+    .site-hero h1 {
+      font-size: 32px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+    }
+
+    .site-hero .sub {
+      font-size: 16px;
+      color: var(--text-secondary);
+    }
 
     .toc {
-      overflow-x: auto;
-      margin-top: 18px;
       display: flex;
-      gap: 12px;
       justify-content: center;
       flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 16px;
     }
 
     .toc a {
-      padding: 8px 14px;
+      padding: 8px 16px;
       border-radius: 999px;
-      background: var(--glass);
-      text-decoration: none;
-      color: #111;
-      font-weight: 600;
-      font-size: 13px;
-      transition: transform 0.25s ease, box-shadow 0.25s;
-      white-space: nowrap;
+      background-color: #f0f0f5;
+      color: var(--text-primary);
+      font-weight: 500;
+      font-size: 14px;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
     }
 
-    .toc a:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15); }
+    .toc a:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px var(--shadow);
+    }
 
+    /* -------------------
+       Day Cards
+    ------------------- */
     .day-card {
-      scroll-margin-top: 140px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(255,255,255,0.96));
-      padding: 22px;
-      border-radius: 14px;
-      margin: 28px 0;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.08);
-      transition: transform 0.3s ease;
-      color: #222;
-      opacity: 0;
-      transform: translateY(12px);
-      animation: slideIn 0.6s ease forwards;
+      scroll-margin-top: 120px; 
+      background-color: var(--card-bg);
+      border-radius: var(--radius);
+      padding: 28px 24px;
+      margin-bottom: var(--gap);
+      box-shadow: 0 4px 16px var(--shadow);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
-    .day-card:hover { transform: translateY(-6px); }
-    .day-card h2 { margin: 0 0 8px 0; color: #000; }
+    .day-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px var(--shadow);
+    }
 
-    .time-block { padding: 12px 0; border-top: 1px dashed rgba(0,0,0,0.05); }
-    .time-block h3 { margin: 6px 0; font-size: 15px; color: #333; }
-    .time-block p { margin: 4px 0; color: #444; line-height: 1.45; }
-    .time-block ul { margin: 6px 0 10px 18px; color: #444; }
+    .day-card h2 {
+      font-size: 24px;
+      margin-bottom: 16px;
+      color: var(--text-primary);
+    }
+
+    .time-block {
+      border-top: 1px solid var(--border);
+      padding: 16px 0;
+    }
+
+    .time-block h3 {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+    }
+
+    .time-block p, .time-block ul {
+      font-size: 15px;
+      color: var(--text-secondary);
+      margin-bottom: 8px;
+    }
+
+    .time-block ul {
+      margin-left: 18px;
+    }
 
     .place-photo {
-      margin-top: 14px;
-      border-radius: 20px;
+      margin-top: 12px;
+      border-radius: var(--radius);
       overflow: hidden;
-      background: var(--glass-2);
-      display: block;
+      background-color: #f2f2f7;
       text-align: center;
     }
 
     .place-photo img {
-      max-width: 100%;
+      width: 100%;
       height: auto;
-      object-fit: contain;
-      border-radius: inherit;
       display: block;
-      transition: transform 0.6s cubic-bezier(0.2,0.9,0.3,1);
-      margin: 0 auto;
+      transition: transform 0.4s ease;
     }
 
-    .place-photo.large img { max-height: 600px; width: auto; }
-    .place-photo:hover img { transform: scale(1.02); }
+    .place-photo:hover img {
+      transform: scale(1.02);
+    }
 
     .place-photo figcaption {
       font-size: 13px;
-      color: #555;
-      padding: 8px 10px;
-      text-align: center;
-      display: block;
-      margin-top: 6px;
+      color: var(--text-secondary);
+      padding: 6px 0;
     }
 
+    /* -------------------
+       Footer
+    ------------------- */
     .footer {
-      margin-top: 28px;
-      padding: 18px;
-      border-radius: 12px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.9), transparent);
+      margin-top: var(--gap);
+      padding: 24px 16px;
+      background-color: var(--card-bg);
+      border-radius: var(--radius);
+      box-shadow: 0 4px 16px var(--shadow);
       display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
+      flex-direction: column;
+      gap: 12px;
+      font-size: 14px;
+      color: var(--text-secondary);
     }
 
-    .footer p { margin: 0; color: #555; }
-    .footer-credits { font-size: 13px; color: #777; margin-top: 8px; }
+    .footer-credits {
+      font-size: 13px;
+      color: #8e8e93;
+    }
 
-    @keyframes slideIn { to { opacity: 1; transform: none; } }
+    /* -------------------
+       Animations
+    ------------------- */
+    .day-card {
+      opacity: 0;
+      transform: translateY(12px);
+      animation: fadeIn 0.6s ease forwards;
+    }
+
     .day-card:nth-of-type(1) { animation-delay: 0.05s; }
     .day-card:nth-of-type(2) { animation-delay: 0.10s; }
     .day-card:nth-of-type(3) { animation-delay: 0.15s; }
     .day-card:nth-of-type(4) { animation-delay: 0.20s; }
     .day-card:nth-of-type(5) { animation-delay: 0.25s; }
 
-    a:focus { outline: 3px solid rgba(96,165,250,0.25); outline-offset: 4px; }
+    @keyframes fadeIn {
+      to { opacity: 1; transform: none; }
+    }
 
-    @media (max-width:700px) {
-      .container { padding:16px; }
-      .site-hero h1 { font-size:24px; }
-      .place-photo.large img { max-height:300px; }
-      .footer { flex-direction: column; align-items: flex-start; }
+    /* -------------------
+       Responsive
+    ------------------- */
+    @media (max-width: 768px) {
+      .site-hero h1 { font-size: 24px; }
+      .toc a { font-size: 13px; padding: 6px 12px; }
+      .day-card { padding: 20px 16px; }
+      .time-block h3 { font-size: 15px; }
+      .time-block p, .time-block ul { font-size: 14px; }
     }
   </style>
 </head>
 <body>
-  <header class="site-hero">
-    <div class="hero-inner">
-      <h1>Japan Trip Plan — Full Itinerary</h1>
-      <p class="sub">Detailed Plan For DEC 30 - JAN 04</p>
-      <nav class="toc">
-        <a href="#day6">Day 6 — Dec 30</a>
-        <a href="#day7">Day 7 — Dec 31</a>
-        <a href="#day8">Day 8 — Jan 1</a>
-        <a href="#day9">Day 9 — Jan 2</a>
-        <a href="#day10">Day 10 — Jan 3</a>
-      </nav>
-    </div>
-  </header>
 
+  <!-- Hero Section -->
+  <header class="site-hero">
+    <h1>Japan Trip Plan — Full Itinerary</h1>
+    <p class="sub">Detailed Plan for DEC 30 - JAN 04</p>
+    <nav class="toc">
+      <a href="#day6">Dec 30</a>
+      <a href="#day7">Dec 31</a>
+      <a href="#day8">Jan 1</a>
+      <a href="#day9">Jan 2</a>
+      <a href="#day10">Jan 3</a>
+    </nav>
+  </header>
+  
+  <!-- Main Container -->
   <main class="container">
+    <!-- Day 6 -->
     <article id="day6" class="day-card">
       <h2>Day 6: Dec 30, 2025 (Tue)</h2>
       <section class="time-block">
@@ -441,6 +519,7 @@
   </main>
 </body>
 </html>
+
 
 
 
