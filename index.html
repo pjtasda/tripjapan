@@ -15,14 +15,8 @@
       --glass-2: rgba(0, 0, 0, 0.02);
     }
 
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
     body {
       margin: 0;
       padding: 0;
@@ -32,13 +26,8 @@
       min-height: 100%;
     }
 
-    .container {
-      max-width: 1100px;
-      padding: 20px;
-      margin: 0 auto;
-    }
+    .container { max-width: 1100px; padding: 20px; margin: 0 auto; }
 
-    /* Header */
     .site-hero {
       position: sticky;
       top: 0;
@@ -52,20 +41,9 @@
       text-align: center;
     }
 
-    .site-hero h1 {
-      margin: 0;
-      font-size: 36px;
-      letter-spacing: -0.5px;
-      color: #111;
-    }
+    .site-hero h1 { margin: 0; font-size: 36px; letter-spacing: -0.5px; color: #111; }
+    .site-hero .sub { margin-top: 8px; color: var(--muted); font-size: 16px; }
 
-    .site-hero .sub {
-      margin-top: 8px;
-      color: var(--muted);
-      font-size: 16px;
-    }
-
-    /* Navigation menu */
     .toc {
       overflow-x: auto;
       margin-top: 18px;
@@ -85,145 +63,27 @@
       font-size: 13px;
       transition: transform 0.25s ease, box-shadow 0.25s;
       white-space: nowrap;
+      position: relative;
     }
 
-    .toc a:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-    }
+    .toc a:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15); }
 
-    /* Day cards */
-    .day-card {
-      scroll-margin-top: 140px;
-      background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(255, 255, 255, 0.96));
-      padding: 22px;
-      border-radius: 14px;
-      margin: 28px 0;
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
-      transition: transform 0.3s ease;
-      color: #222;
-      opacity: 0;
-      transform: translateY(12px);
-      animation: slideIn 0.6s ease forwards;
-    }
+    /* Mobile: shorten header link text using ::after */
+    @media (max-width:700px) {
+      .container { padding:16px; }
+      .site-hero h1 { font-size:24px; }
+      .place-photo.large img { max-height:300px; }
+      .footer { flex-direction: column; align-items: flex-start; }
 
-    .day-card:hover {
-      transform: translateY(-6px);
-    }
-
-    .day-card h2 {
-      margin: 0 0 8px 0;
-      color: #000;
-    }
-
-    .time-block {
-      padding: 12px 0;
-      border-top: 1px dashed rgba(0, 0, 0, 0.05);
-    }
-
-    .time-block h3 {
-      margin: 6px 0;
-      font-size: 15px;
-      color: #333;
-    }
-
-    .time-block p {
-      margin: 4px 0;
-      color: #444;
-      line-height: 1.45;
-    }
-
-    .time-block ul {
-      margin: 6px 0 10px 18px;
-      color: #444;
-    }
-
-    /* Images */
-    .place-photo {
-      margin-top: 14px;
-      border-radius: 20px;
-      overflow: hidden;
-      background: var(--glass-2);
-      display: block;
-      text-align: center;
-    }
-
-    .place-photo img {
-      max-width: 100%;
-      height: auto;
-      object-fit: contain;
-      border-radius: inherit;
-      display: block;
-      transition: transform 0.6s cubic-bezier(0.2, 0.9, 0.3, 1);
-      margin: 0 auto;
-    }
-
-    .place-photo.large img {
-      max-height: 600px;
-      width: auto;
-    }
-
-    .place-photo:hover img {
-      transform: scale(1.02);
-    }
-
-    .place-photo figcaption {
-      font-size: 13px;
-      color: #555;
-      padding: 8px 10px;
-      text-align: center;
-      display: block;
-      margin-top: 6px;
-    }
-
-    /* Footer */
-    .footer {
-      margin-top: 28px;
-      padding: 18px;
-      border-radius: 12px;
-      background: linear-gradient(180deg, rgba(255, 255, 255, 0.9), transparent);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-
-    .footer p {
-      margin: 0;
-      color: #555;
-    }
-
-    .footer-credits {
-      font-size: 13px;
-      color: #777;
-      margin-top: 8px;
-    }
-
-    /* Animations */
-    @keyframes slideIn {
-      to {
-        opacity: 1;
-        transform: none;
+      /* Hide full text and show shortened version */
+      .toc a {
+        color: #111;
+        font-size: 13px;
       }
-    }
-
-    .day-card:nth-of-type(1) {animation-delay: 0.05s;}
-    .day-card:nth-of-type(2) {animation-delay: 0.10s;}
-    .day-card:nth-of-type(3) {animation-delay: 0.15s;}
-    .day-card:nth-of-type(4) {animation-delay: 0.20s;}
-    .day-card:nth-of-type(5) {animation-delay: 0.25s;}
-
-    a:focus {
-      outline: 3px solid rgba(96, 165, 250, 0.25);
-      outline-offset: 4px;
-    }
-
-    /* Mobile */
-    @media (max-width: 700px) {
-      .container {padding: 16px;}
-      .site-hero h1 {font-size: 24px;}
-      .place-photo.large img {max-height: 300px;}
-      .footer {flex-direction: column; align-items: flex-start;}
+      .toc a::after {
+        content: attr(data-short);
+      }
+      .toc a span { display: none; } /* Hide original text */
     }
   </style>
 </head>
@@ -233,17 +93,16 @@
       <h1>Japan Trip Plan — Full Itinerary</h1>
       <p class="sub">Detailed Plan For DEC 30 - JAN 04</p>
       <nav class="toc">
-        <a href="#day6">Day 6 — Dec 30, 2025</a>
-        <a href="#day7">Day 7 — Dec 31, 2025</a>
-        <a href="#day8">Day 8 — Jan 1, 2026</a>
-        <a href="#day9">Day 9 — Jan 2, 2026</a>
-        <a href="#day10">Day 10 — Jan 3, 2026</a>
+        <a href="#day6" data-short="Dec 30"><span>Day 6 — Dec 30, 2025</span></a>
+        <a href="#day7" data-short="Dec 31"><span>Day 7 — Dec 31, 2025</span></a>
+        <a href="#day8" data-short="Jan 1"><span>Day 8 — Jan 1, 2026</span></a>
+        <a href="#day9" data-short="Jan 2"><span>Day 9 — Jan 2, 2026</span></a>
+        <a href="#day10" data-short="Jan 3"><span>Day 10 — Jan 3, 2026</span></a>
       </nav>
     </div>
   </header>
 
   <main class="container">
-    <!-- Day 6 -->
     <article id="day6" class="day-card">
       <h2>Day 6: Dec 30, 2025 (Tue)</h2>
       <section class="time-block">
@@ -516,3 +375,5 @@
   </main>
 </body>
 </html>
+
+
