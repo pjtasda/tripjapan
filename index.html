@@ -5,21 +5,35 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Japan Trip Plan — Full Itinerary</title>
   <meta name="description" content="Full, verbatim Japan trip plan with photos and clear schedule." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
   <style>
     /* -------------------
        Variables
     ------------------- */
     :root {
-      --bg: #f8f8f8;
+      --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+      --accent-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+      --sunset-gradient: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+      
+      --bg: #f8fafc;
       --card-bg: #ffffff;
-      --text-primary: #1d1d1f;
-      --text-secondary: #6e6e73;
-      --accent: #0071e3;
-      --border: #d2d2d7;
-      --shadow: rgba(0,0,0,0.08);
-      --radius: 16px;
-      --gap: 20px;
+      --text-primary: #1a202c;
+      --text-secondary: #4a5568;
+      --text-muted: #718096;
+      --accent: #4299e1;
+      --accent-hover: #3182ce;
+      --border: #e2e8f0;
+      --shadow: rgba(0, 0, 0, 0.1);
+      --shadow-lg: rgba(0, 0, 0, 0.15);
+      --radius: 20px;
+      --radius-sm: 12px;
+      --gap: 24px;
+      
+      --glass-bg: rgba(255, 255, 255, 0.25);
+      --glass-border: rgba(255, 255, 255, 0.18);
     }
 
     * {
@@ -33,24 +47,30 @@
     }
 
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-      background-color: var(--bg);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: var(--bg);
+      background-image: 
+        radial-gradient(at 40% 20%, hsla(228, 100%, 74%, 0.05) 0px, transparent 50%),
+        radial-gradient(at 80% 0%, hsla(189, 100%, 56%, 0.05) 0px, transparent 50%),
+        radial-gradient(at 0% 50%, hsla(355, 100%, 93%, 0.05) 0px, transparent 50%);
       color: var(--text-primary);
       line-height: 1.6;
+      min-height: 100vh;
     }
 
     a {
       text-decoration: none;
       color: var(--accent);
-      transition: color 0.25s ease;
+      transition: all 0.3s ease;
     }
 
     a:hover {
-      color: #005bb5;
+      color: var(--accent-hover);
+      transform: translateY(-1px);
     }
 
     .container {
-      max-width: 1080px;
+      max-width: 1200px;
       margin: 0 auto;
       padding: 24px 16px;
     }
@@ -59,97 +79,190 @@
        Hero Section
     ------------------- */
     .site-hero {
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      background: rgba(255,255,255,0.95);
-      padding: 48px 16px;
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      padding: 40px 24px;
       border-radius: var(--radius);
-      box-shadow: 0 6px 20px var(--shadow);
+      box-shadow: 
+        0 8px 32px var(--shadow),
+        0 0 0 1px rgba(255, 255, 255, 0.05) inset;
       text-align: center;
-      backdrop-filter: blur(8px);
       margin-bottom: var(--gap);
+      background-image: var(--primary-gradient);
+      color: white;
+    }
+
+    .site-hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: var(--primary-gradient);
+      opacity: 0.9;
+      border-radius: var(--radius);
+      z-index: -1;
     }
 
     .site-hero h1 {
-      font-size: 32px;
-      font-weight: 600;
-      color: var(--text-primary);
-      margin-bottom: 8px;
+      font-size: clamp(28px, 4vw, 42px);
+      font-weight: 700;
+      margin-bottom: 12px;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      letter-spacing: -0.02em;
     }
 
     .site-hero .sub {
-      font-size: 16px;
-      color: var(--text-secondary);
+      font-size: 18px;
+      opacity: 0.9;
+      margin-bottom: 16px;
+      font-weight: 400;
     }
 
-    .toc {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 16px;
+    .site-hero .japan-icon {
+      font-size: 48px;
+      margin-bottom: 16px;
+      display: block;
+      animation: float 3s ease-in-out infinite;
     }
 
-    .toc a {
-      padding: 8px 16px;
-      border-radius: 999px;
-      background-color: #f0f0f5;
-      color: var(--text-primary);
-      font-weight: 500;
-      font-size: 14px;
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
-    }
-
-    .toc a:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px var(--shadow);
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
     }
 
     /* -------------------
        Day Cards
     ------------------- */
     .day-card {
-      scroll-margin-top: 120px; 
-      background-color: var(--card-bg);
+      background: var(--card-bg);
       border-radius: var(--radius);
-      padding: 28px 24px;
+      padding: 32px;
       margin-bottom: var(--gap);
-      box-shadow: 0 4px 16px var(--shadow);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 
+        0 10px 40px var(--shadow),
+        0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s ease, transform 0.8s ease, box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .day-card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .day-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: var(--accent-gradient);
+      transform: scaleX(0);
+      transition: transform 0.4s ease;
+      transform-origin: left;
+    }
+
+    .day-card:hover::before {
+      transform: scaleX(1);
     }
 
     .day-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 8px 24px var(--shadow);
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 
+        0 20px 60px var(--shadow-lg),
+        0 0 0 1px rgba(255, 255, 255, 0.1) inset;
     }
 
     .day-card h2 {
-      font-size: 24px;
-      margin-bottom: 16px;
+      font-size: 28px;
+      margin-bottom: 24px;
       color: var(--text-primary);
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .day-card h2::before {
+      content: '📅';
+      font-size: 32px;
     }
 
     .time-block {
-      border-top: 1px solid var(--border);
-      padding: 16px 0;
+      border-left: 3px solid transparent;
+      border-image: var(--accent-gradient) 1;
+      padding: 20px 0 20px 24px;
+      margin-left: 12px;
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    .time-block::before {
+      content: '';
+      position: absolute;
+      left: -8px;
+      top: 24px;
+      width: 12px;
+      height: 12px;
+      background: var(--accent);
+      border-radius: 50%;
+      box-shadow: 0 0 0 4px white, 0 0 0 6px var(--accent);
+    }
+
+    .time-block:hover {
+      background: rgba(66, 153, 225, 0.02);
+      border-radius: var(--radius-sm);
+      margin-left: 16px;
+      padding-left: 20px;
     }
 
     .time-block h3 {
-      font-size: 16px;
+      font-size: 18px;
       font-weight: 600;
-      color: var(--text-primary);
-      margin-bottom: 8px;
+      color: var(--accent);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .time-block h3::before {
+      content: '⏰';
+      font-size: 16px;
     }
 
     .time-block p, .time-block ul {
       font-size: 15px;
       color: var(--text-secondary);
-      margin-bottom: 8px;
+      margin-bottom: 12px;
+      line-height: 1.7;
     }
 
     .time-block ul {
-      margin-left: 18px;
+      margin-left: 20px;
+    }
+
+    .time-block li {
+      margin-bottom: 6px;
+      position: relative;
+    }
+
+    .time-block li::marker {
+      content: '✈️ ';
+    }
+
+    .time-block strong {
+      color: var(--text-primary);
+      font-weight: 600;
     }
 
     .place-photo {
@@ -177,71 +290,150 @@
       padding: 6px 0;
     }
 
+    /* Special day styling */
+
+
     /* -------------------
        Footer
     ------------------- */
     .footer {
-      margin-top: var(--gap);
-      padding: 24px 16px;
-      background-color: var(--card-bg);
+      margin-top: 48px;
+      padding: 32px 24px;
+      background: var(--card-bg);
       border-radius: var(--radius);
-      box-shadow: 0 4px 16px var(--shadow);
+      box-shadow: 0 8px 32px var(--shadow);
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 16px;
       font-size: 14px;
       color: var(--text-secondary);
+      text-align: center;
+      border: 1px solid var(--border);
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .footer.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     .footer-credits {
       font-size: 13px;
-      color: #8e8e93;
+      color: var(--text-muted);
+      font-style: italic;
     }
 
-    /* -------------------
-       Animations
-    ------------------- */
-    .day-card {
-      opacity: 0;
-      transform: translateY(12px);
-      animation: fadeIn 0.6s ease forwards;
+    .footer-credits::before {
+      content: '🗾 ';
     }
 
-    .day-card:nth-of-type(1) { animation-delay: 0.05s; }
-    .day-card:nth-of-type(2) { animation-delay: 0.10s; }
-    .day-card:nth-of-type(3) { animation-delay: 0.15s; }
-    .day-card:nth-of-type(4) { animation-delay: 0.20s; }
-    .day-card:nth-of-type(5) { animation-delay: 0.25s; }
+    /* Scroll indicator */
+    .scroll-indicator {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: rgba(66, 153, 225, 0.2);
+      z-index: 9999;
+    }
 
-    @keyframes fadeIn {
-      to { opacity: 1; transform: none; }
+    .scroll-progress {
+      height: 100%;
+      background: var(--accent-gradient);
+      width: 0%;
+      transition: width 0.1s ease;
     }
 
     /* -------------------
        Responsive
     ------------------- */
     @media (max-width: 768px) {
-      .site-hero h1 { font-size: 24px; }
-      .toc a { font-size: 13px; padding: 6px 12px; }
-      .day-card { padding: 20px 16px; }
-      .time-block h3 { font-size: 15px; }
-      .time-block p, .time-block ul { font-size: 14px; }
+      .container {
+        padding: 16px 12px;
+      }
+      
+      .site-hero {
+        padding: 32px 20px;
+        margin-bottom: 16px;
+      }
+      
+      .site-hero h1 { 
+        font-size: 24px; 
+      }
+      
+      .site-hero .sub {
+        font-size: 16px;
+      }
+      
+      .day-card { 
+        padding: 20px 16px; 
+        margin-bottom: 16px;
+      }
+      
+      .day-card h2 {
+        font-size: 22px;
+      }
+      
+      .time-block h3 { 
+        font-size: 16px; 
+      }
+      
+      .time-block p, .time-block ul { 
+        font-size: 14px; 
+      }
+      
+      .place-photo img {
+        height: auto;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .site-hero h1 {
+        font-size: 20px;
+      }
+      
+      .day-card h2 {
+        font-size: 18px;
+      }
+      
+      .place-photo img {
+        height: auto;
+      }
+    }
+
+    /* Dark mode support */
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0f172a;
+        --card-bg: #1e293b;
+        --text-primary: #f1f5f9;
+        --text-secondary: #cbd5e1;
+        --text-muted: #94a3b8;
+        --border: #334155;
+        --shadow: rgba(0, 0, 0, 0.3);
+        --shadow-lg: rgba(0, 0, 0, 0.4);
+      }
+      
+      .place-photo {
+        background-color: #1c1c1e;
+      }
     }
   </style>
 </head>
 <body>
+  <!-- Scroll Progress Indicator -->
+  <div class="scroll-indicator">
+    <div class="scroll-progress" id="scroll-progress"></div>
+  </div>
 
   <!-- Hero Section -->
   <header class="site-hero">
+    <span class="japan-icon">🗾</span>
     <h1>Japan Trip Plan — Full Itinerary</h1>
-    <p class="sub">Detailed Plan for DEC 30 - JAN 04</p>
-    <nav class="toc">
-      <a href="#day6">Dec 30</a>
-      <a href="#day7">Dec 31</a>
-      <a href="#day8">Jan 1</a>
-      <a href="#day9">Jan 2</a>
-      <a href="#day10">Jan 3</a>
-    </nav>
+    <p class="sub">Detailed Plan for DEC 30 - JAN 04 • 5 Amazing Days</p>
   </header>
   
   <!-- Main Container -->
@@ -267,7 +459,6 @@
         <p>• Long-running complex where visitors can interact with trained squirrels & feed them acorns.
         <br/>Backup plan if closed (Explore rest of Mt kinkazan)</p>
         <figure class="place-photo">
-          <!-- PLACEHOLDER: add an online image URL for Gifu Mt. Kinka ropeway here -->
           <img src="https://svcstrg.cld.navitime.jp/travelguide/p21060003/p21060003_01.jpg" alt="Squirrel Village"/>
           <figcaption>Able to feed trained squirrels</figcaption>
         </figure>
@@ -328,7 +519,7 @@
 
       <section class="time-block">
         <h3>1:00 PM - 3:00 PM</h3>
-        <p><strong>Fina lunch in Osu Shopping Street</strong></p>
+        <p><strong>Final lunch in Osu Shopping Street</strong></p>
       </section>
 
       <section class="time-block">
@@ -361,7 +552,7 @@
 
       <section class="time-block">
         <h3>11:30 PM - 12:00 AM</h3>
-        <p><strong>Celebrate New Year!</strong></p>
+        <p><strong>Celebrate New Year! 🎊</strong></p>
         <figure class="place-photo">
           <img src="https://i0.wp.com/mykyotomachiya.com/wp-content/uploads/2015/12/101231_Kyoto-Chion-In-1492.jpg?fit=1024%2C681&ssl=1" alt="joya no kane"/>
           <figcaption>Joya No Kane(New Year Tradition)</figcaption>
@@ -398,7 +589,6 @@
       </section>
 
       <figure class="place-photo">
-        <!-- Placeholder for Mitsui Outlet Park image -->
         <img src="https://www.nagoya-info.jp/upload/spots/large/18817188645e3bb41b30e90.jpg" alt="Mitsui Outlet Park Nagashima"/>
         <figcaption>Mitsui Outlet Park Nagashima </figcaption>
       </figure>
@@ -422,7 +612,7 @@
         <p><strong>Explore Okazaki Castle & Park</strong></p>
         <p>• Visit the historic castle and wander through the surrounding park, the birthplace of shogun Tokugawa Ieyasu.</p>
         <figure class="place-photo">
-          <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/04/c9/02/78/caption.jpg?w=700&h=400&s=1" alt="okazaki castle"/>
+          <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/04/c9/02/78/caption.jpg?w=700&h-400&s=1" alt="okazaki castle"/>
           <figcaption>Okazaki Castle and Park</figcaption>
         </figure>
       </section>
@@ -511,17 +701,70 @@
 
     <footer class="footer">
       <div>
-        <p>Full itinerary reproduced verbatim from the uploaded plan. All times, addresses and notes are included.</p>
-        <p>Images: placeholder images included. Replace with high-res images as needed.</p>
+        <p><strong>✨ Full itinerary reproduced verbatim from the uploaded plan.</strong> All times, addresses and notes are included.</p>
+        <p>🖼️ Images: placeholder images included. Replace with high-res images as needed.</p>
       </div>
-      <div class="footer-credits">Made with care • All-in-one HTML + CSS</div>
+      <div class="footer-credits">Made with care for an amazing Japan adventure • All-in-one HTML + CSS</div>
     </footer>
   </main>
+
+  <script>
+    // Scroll progress indicator
+    window.addEventListener('scroll', () => {
+      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      document.getElementById('scroll-progress').style.width = scrolled + '%';
+    });
+
+    // Add some interactive hover effects
+    document.querySelectorAll('.time-block').forEach(block => {
+      block.addEventListener('mouseenter', function() {
+        this.style.transform = 'translateX(4px)';
+      });
+      
+      block.addEventListener('mouseleave', function() {
+        this.style.transform = 'translateX(0)';
+      });
+    });
+
+    // Scroll fade-in effect for main content
+    document.addEventListener('DOMContentLoaded', function() {
+      const elementsToAnimate = document.querySelectorAll('main .day-card, main .footer');
+      
+      // Set initial state for all elements
+      elementsToAnimate.forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(20px)';
+        el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+      });
+      
+      // Create an intersection observer to detect when elements enter the viewport
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            // When element enters the viewport, fade it in
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+            // Add a class to mark it as animated
+            entry.target.classList.add('visible');
+            // Stop observing after animation
+            observer.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.1, // Trigger when 10% of the element is visible
+        rootMargin: '0px 0px -50px 0px' // Adjust trigger point slightly upward
+      });
+      
+      // Observe all elements
+      elementsToAnimate.forEach(el => {
+        observer.observe(el);
+      });
+    });
+  </script>
 </body>
 </html>
-
-
-
 
 
 
